@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+            <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,17 +13,17 @@
             box-sizing: border-box;
         }
 
-        /* Full-page interactive Earth background */
         body {
             color: #fff;
             font-family: Arial, sans-serif;
             height: 100vh;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
             padding: 20px;
             overflow: hidden;
-            background: url('background.gif') no-repeat center center/cover; /* Ensure this file exists */
+            background: url('background.gif') no-repeat center center/cover;
         }
 
         canvas {
@@ -34,16 +35,24 @@
             z-index: -1;
         }
 
+        .content {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            max-width: 1200px;
+            justify-content: space-between;
+        }
+
         /* Table Styling */
         .table-container {
             flex: 1;
             max-width: 40%;
-            margin-left: 20px;
+            margin: 10px;
+            text-align: center;
         }
 
         h1 {
-            font-size: 3em;
-            color: white;
+            font-size: 2.5em;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
             margin-bottom: 20px;
         }
@@ -51,17 +60,16 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            color: black;
             border-radius: 10px;
             overflow: hidden;
-            background-color: #fff;
         }
 
         th, td {
-            border: 1px solid #ddd;
             padding: 12px;
             text-align: center;
-            transition: background-color 0.3s ease;
+            border: 1px solid #ddd;
         }
 
         th {
@@ -69,105 +77,109 @@
             color: white;
         }
 
-        td {
-            background-color: #ecf0f1;
-        }
-
-        td:hover {
-            background-color: #95a5a6;
-            transform: scale(1.05);
-        }
-
-        tr:hover {
-            background-color: #bdc3c7;
-            transition: background-color 0.3s ease;
-        }
-
-        /* Links and icons container */
         .links-container {
             flex: 1;
             max-width: 40%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-right: 20px;
+            margin: 10px;
         }
 
         .link {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 20px;
+            margin: 10px;
             padding: 10px 20px;
             color: white;
             text-decoration: none;
-            font-size: 1.5em;
+            font-size: 1.2em;
             background-color: #34495e;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            width: 100%;
+            text-align: center;
         }
 
         .link img {
-            width: 70px;
-            height: 70px;
+            width: 50px;
+            height: 50px;
             margin-right: 10px;
             border-radius: 50%;
-            transition: transform 0.3s ease;
         }
 
-        .link img:hover {
-            transform: scale(1.2);
-        }
-
-        .link:hover {
-            background-color: #2c3e50;
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .table-container, .links-container {
+                max-width: 100%;
+            }
+            h1 {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
 <body>
     <canvas id="earthCanvas"></canvas>
 
-    <div class="table-container">
-        <h1><strong>WGC</strong></h1>
-        <table>
-            <tr>
-                <th>MEMBERS</th>
-            </tr>
-            <tr><td>HARSHIT</td></tr>
-            <tr><td>SIJAN</td></tr>
-            <tr><td>SABEER</td></tr>
-            <tr><td>AYAN</td></tr>
-            <tr><td>PRAYUSH</td></tr>
-            <tr><td>SHIVASHISH</td></tr>
-            <tr><td>NIRVIK</td></tr>
-            <tr><td>NEERAF</td></tr>
-        </table>
+    <div class="content">
+        <div class="table-container">
+            <h1><strong>WGC</strong></h1>
+            <table>
+                <tr><th>MEMBERS</th></tr>
+                <tr><td>HARSHIT</td></tr>
+                <tr><td>SIJAN</td></tr>
+                <tr><td>SABEER</td></tr>
+                <tr><td>AYAN</td></tr>
+                <tr><td>PRAYUSH</td></tr>
+                <tr><td>SHIVASHISH</td></tr>
+                <tr><td>NIRVIK</td></tr>
+                <tr><td>NEERAF</td></tr>
+            </table>
+        </div>
+
+        <div class="links-container">
+            <a href="index2.html" class="link">
+                <img src="SHOP.png" alt="Shop Icon"> SHOP
+            </a>
+            <a href="index1.html" class="link">
+                <img src="CONTRIES.jpg" alt="Countries Icon"> COUNTRIES
+            </a>
+            <a href="ranking.html" class="link">
+                <img src="images.png" alt="Ranking Icon"> RANKING
+            </a>
+        </div>
     </div>
 
-    <div class="links-container">
-        <a href="index2.HTML" class="link">
-            <img src="SHOP.png" alt="Shop Icon">SHOP
-        </a>
-        <a href="index1.HTML" class="link">
-            <img src="CONTRIES.jpg" alt="Countries Icon">COUNTRIES
-        </a>
-        <a href="ranking.html" class="link">
-        </a> 
-            <img src="images.png" alt=" ranking icon">RANKING
-    </div>
-
-    <!-- Load Three.js before running the script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
-
     <script>
-        // Check if Three.js is loaded properly
         if (typeof THREE === "undefined") {
             console.error("Three.js failed to load.");
         } else {
             console.log("Three.js loaded successfully.");
-
-            // Interactive Earth background using Three.js
-            const canvas = document.getElementById('earthCanvas');
-            const renderer = new THREE.WebGLRenderer({ canvas });
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('earthCanvas') });
             renderer.setSize(window.innerWidth, window.innerHeight);
-            document.body
+
+            const geometry = new THREE.SphereGeometry(3, 32, 32);
+            const texture = new THREE.TextureLoader().load('earth.jpg');
+            const material = new THREE.MeshBasicMaterial({ map: texture });
+            const sphere = new THREE.Mesh(geometry, material);
+            scene.add(sphere);
+
+            camera.position.z = 6;
+            function animate() {
+                requestAnimationFrame(animate);
+                sphere.rotation.y += 0.005;
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+    </script>
+</body>
+</html>
